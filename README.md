@@ -215,6 +215,8 @@ School Management Project/
 
 ```bash
 git clone https://github.com/Devesh517/School-Management.git
+```
+```bash
 cd School-Management-System
 ```
 
