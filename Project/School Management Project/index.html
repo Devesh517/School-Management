@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduManage — School Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./CSS/style.css"/>
+  <link rel="stylesheet" href="./CSS/js-inline-overrides.css"/>
+</head>
+<body>
+  <div id="app">
+    <!-- LOGIN PAGE -->
+    <div id="page-login" class="page active">
+      <div class="login-bg">
+        <div class="login-grid-overlay"></div>
+        <div class="login-card">
+          <div class="login-brand">
+            <div class="brand-icon">🎓</div>
+            <h1>EduManage</h1>
+            <p>School Management System</p>
+          </div>
+          <form id="login-form" class="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="login-username" placeholder="Enter username" required/>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="Enter password" required/>
+            </div>
+            <div id="login-error" class="error-msg hidden"></div>
+            <button type="submit" class="btn-primary full-width">
+              <span class="btn-text">Sign In</span>
+              <span class="btn-loader hidden">⟳</span>
+            </button>
+          </form>
+          <p class="login-hint">Director: <strong>director / director123</strong></p>
+          <p class="login-hint" style="margin-top:8px;">Student? <a href="student.html" style="color:var(--accent,#4f8ef7);font-weight:600;">Go to Student Portal →</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="page-app" class="page hidden">
+      <!-- SIDEBAR -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-icon">🎓</div>
+          <span>EduManage</span>
+        </div>
+        <nav class="sidebar-nav" id="main-nav">
+          <!-- Nav built dynamically by app.js based on role -->
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <div class="user-avatar" id="user-avatar">A</div>
+            <div>
+              <div class="user-name" id="user-name">User</div>
+              <div class="user-role" id="user-role">Role</div>
+            </div>
+          </div>
+          <button class="btn-logout" onclick="logout()">↩</button>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <div id="content-area"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- MODAL -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal</h3>
+        <button onclick="closeModal()" class="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <script src="./JS/api.js"></script>
+  <script src="./JS/utils.js"></script>
+  <script src="./JS/app.js"></script>
+  <script src="./JS/assignments.js"></script>
+  <script src="./JS/attendance.js"></script>
+  <script src="./JS/classes.js"></script>
+  <script src="./JS/dashboard.js"></script>
+  <script src="./JS/exams.js"></script>
+  <script src="./JS/notices.js"></script>
+  <script src="./JS/report.js"></script>
+  <script src="./JS/salary.js"></script>
+  <script src="./JS/student_access.js"></script>
+  <script src="./JS/students.js"></script>
+  <script src="./JS/teachers.js"></script>
+  <!-- New role pages -->
+  <script src="./JS/director.js"></script>
+  <script src="./JS/principal.js"></script>
+  <script src="./JS/administrator.js"></script>
+  <script src="./JS/timetable.js"></script>
+  <script src="./JS/fees.js"></script>
+  <script src="./JS/mobile-sidebar.js"></script>
+</body>
+</html>

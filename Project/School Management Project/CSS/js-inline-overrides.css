@@ -1,0 +1,522 @@
+/* ===================================================
+   js-inline-overrides.css
+   Replaces / fixes all hard-coded inline styles that
+   are injected via JavaScript innerHTML templates.
+   Add this AFTER style.css and student.css.
+   =================================================== */
+
+/* ───────────────────────────────────────────────────
+   CSS CUSTOM PROPERTIES (supplement the light theme)
+   ─────────────────────────────────────────────────── */
+:root {
+  --bg-secondary:   #f0f4f8;  /* used in timetable cells / marks rows    */
+  --text-secondary: #3d5166;  /* referenced by JS as var(--text-secondary) */
+  --text-muted:     #6b7f96;  /* referenced by JS as var(--text-muted)    */
+  --text-tertiary:  #8fa3b8;  /* lightest readable text                   */
+  --accent-subtle:  #e8f0fb;  /* today-row highlight in exam timetable    */
+}
+
+/* ───────────────────────────────────────────────────
+   FORM GRID  (used in director.js, fees.js, etc.)
+   ─────────────────────────────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* The .form-input alias used in student_access.js */
+.form-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 11px 15px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 14px;
+  transition: var(--transition);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ───────────────────────────────────────────────────
+   DASHBOARD — two-column quick-action grid
+   ─────────────────────────────────────────────────── */
+/* The inline `style="display:grid;grid-template-columns:1fr 1fr;gap:24px"` */
+[style*="grid-template-columns:1fr 1fr"],
+[style*="grid-template-columns: 1fr 1fr"] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ───────────────────────────────────────────────────
+   ATTENDANCE VIEW — inline stat mini-cards
+   ─────────────────────────────────────────────────── */
+/* `style="display:flex;gap:16px;margin-bottom:20px"` wrapping stat cards */
+.stat-card[style*="flex:1"] {
+  flex: 1 1 120px;
+  min-width: 0;
+  padding: 14px 16px !important;
+}
+
+/* ───────────────────────────────────────────────────
+   REPORT PREVIEW — 4-column stat grid
+   ─────────────────────────────────────────────────── */
+/* `style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px"` */
+[style*="grid-template-columns:repeat(4,1fr)"],
+[style*="grid-template-columns: repeat(4, 1fr)"] {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* ───────────────────────────────────────────────────
+   NOTICE ITEMS  (notices.js inline notice cards)
+   ─────────────────────────────────────────────────── */
+.notice-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 17px 20px;
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+.notice-item:hover { box-shadow: var(--shadow); }
+
+.notice-item > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ───────────────────────────────────────────────────
+   DATA TABLE alias  (student_access.js, student_app.js)
+   ─────────────────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table thead th {
+  background: var(--bg2);
+  padding: 11px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--text3);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid rgba(205,215,227,0.6);
+  transition: var(--transition);
+}
+.data-table tbody tr:hover { background: var(--surface2); }
+.data-table tbody tr:last-child { border-bottom: none; }
+
+.data-table tbody td {
+  padding: 12px 16px;
+  color: var(--text2);
+  vertical-align: middle;
+}
+.data-table tbody td:first-child { color: var(--text); font-weight: 600; }
+
+/* ───────────────────────────────────────────────────
+   TIMETABLE CELL  (timetable.js, student_app.js)
+   ─────────────────────────────────────────────────── */
+/* Cells that use var(--bg-secondary) */
+td[style*="background:var(--bg-secondary)"],
+td[style*="background: var(--bg-secondary)"] {
+  background: var(--bg-secondary) !important;
+  border-radius: 6px;
+  padding: 8px !important;
+  font-size: 12px;
+}
+
+/* ───────────────────────────────────────────────────
+   SALARY PREVIEW BOX  (salary.js)
+   ─────────────────────────────────────────────────── */
+#staff-salary-preview {
+  background: var(--bg2);
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+
+#staff-salary-preview > div[style*="grid-template-columns:repeat(4,1fr)"] {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+/* ───────────────────────────────────────────────────
+   ERROR / EMPTY states from JS
+   ─────────────────────────────────────────────────── */
+.error-state {
+  background: rgba(220,38,38,0.07);
+  border: 1px solid rgba(220,38,38,0.22);
+  color: #b91c1c;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+/* Student-access selector card body flex */
+.card > div[style*="display:flex"][style*="gap:12px"] {
+  display: flex !important;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 0 22px 22px;
+}
+
+/* ───────────────────────────────────────────────────
+   STUDENT DASHBOARD — 2-col grid (upcoming + notices)
+   ─────────────────────────────────────────────────── */
+/* The `style="display:grid;grid-template-columns:1fr 1fr;gap:20px"` wrapper */
+div[style*="grid-template-columns:1fr 1fr"][style*="gap:20px"] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ───────────────────────────────────────────────────
+   REPORT CARD PREVIEW — overall summary card
+   ─────────────────────────────────────────────────── */
+/* Last summary card in report card page */
+.card[style*="background:linear-gradient"] > div[style*="justify-content:space-between"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* ───────────────────────────────────────────────────
+   SALARY STRUCTURE INFO BOX
+   ─────────────────────────────────────────────────── */
+div[style*="background:var(--bg2)"][style*="border:1px solid var(--border)"] {
+  background: var(--bg2) !important;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+/* ───────────────────────────────────────────────────
+   ATTENDANCE LOW WARNING  (student_app.js)
+   ─────────────────────────────────────────────────── */
+.alert-warning {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #fef9c3;
+  border: 1px solid #d97706;
+  border-radius: 10px;
+  color: #854d0e;
+  font-size: 0.87rem;
+}
+
+/* ───────────────────────────────────────────────────
+   =====================================================
+   RESPONSIVE BREAKPOINTS
+   =====================================================
+   ─────────────────────────────────────────────────── */
+
+/* ── Tablet (≤ 1024px) ─────────────────────────────── */
+@media (max-width: 1024px) {
+
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Report preview 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Salary structure info */
+  #staff-salary-preview > div[style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Dashboard quick actions – keep 2 col on tablet */
+  [style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:20px"] {
+    gap: 16px;
+  }
+}
+
+/* ── Mobile (≤ 768px) ──────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Show sidebar-toggle button inside top-bar on mobile */
+  .sidebar-toggle { display: flex; }
+
+  /* Top-bar padding tighter on mobile */
+  .top-bar { padding: 10px 14px; }
+
+  /* Content area padding on mobile */
+  .content-area { padding: 14px; }
+
+  /* All 2-column grids collapse to 1 */
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:20px"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* 4-col stat grids → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Stats inside salary preview → 2-col */
+  #staff-salary-preview > div[style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Report preview stat grid */
+  div[style*="grid-template-columns:repeat(4,1fr)"][style*="gap:12px"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Student dashboard upcoming+notices grid */
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:20px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Quick action card buttons */
+  .card-body[style*="flex-direction:column"] button.btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Principal academic 2-col grid */
+  div[style*="grid-template-columns:1fr 1fr"][style*="gap:24px"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Report card summary bar */
+  .card[style*="background:linear-gradient"] > div[style*="justify-content:space-between"] {
+    flex-direction: column;
+    text-align: center;
+  }
+  .card[style*="background:linear-gradient"] .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Timetable — allow horizontal scroll */
+  #tt-grid .card-body,
+  .card-body[style*="overflow-x:auto"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Salary structure info — wrap on mobile */
+  div[style*="background:var(--bg2)"][style*="border:1px solid var(--border)"] {
+    font-size: 12px;
+    word-break: break-word;
+  }
+
+  /* Notice item header stack */
+  .notice-item > div:first-child {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Student-access selector */
+  .card > div[style*="display:flex"][style*="gap:12px"] {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  /* Attendance view mini stat flex */
+  div[style*="display:flex"][style*="gap:16px"] .stat-card[style*="flex:1"] {
+    flex: 1 1 calc(50% - 8px) !important;
+    min-width: 0 !important;
+  }
+
+  /* Salary form rows */
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Exam timetable table scroll */
+  .timetable-group .table-wrap,
+  div[style*="overflow-x:auto"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Salary table — reduce font on small screens */
+  #salary-table .table-wrap table,
+  #teacher-salary-records table,
+  #staff-salary-records table {
+    font-size: 12px;
+    min-width: 640px;
+  }
+
+  /* Student marks accordion progress bar */
+  div[style*="width:100px"] .progress-bar-wrap {
+    width: 80px !important;
+  }
+}
+
+/* ── Small Mobile (≤ 480px) ────────────────────────── */
+@media (max-width: 480px) {
+
+  /* 4-col → 1-col on very small screens */
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 2-col dashboard → 1-col */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Attendance mini stat cards → 1 col */
+  div[style*="display:flex"][style*="gap:16px"] .stat-card[style*="flex:1"] {
+    flex: 1 1 100% !important;
+  }
+
+  /* Salary preview info → 1 col */
+  #staff-salary-preview > div[style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Principal academic card grid */
+  div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Exam timetable today highlight readable on mobile */
+  tr[style*="background:var(--accent-subtle)"] td {
+    background: inherit;
+  }
+
+  /* Reduce padding on card-body on tiny screens */
+  .card-body { padding: 14px; }
+  .card-header { padding: 14px; }
+}
+
+/* ───────────────────────────────────────────────────
+   TOP BAR  (student.html only)
+   ─────────────────────────────────────────────────── */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 12px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;           /* hidden on desktop — hamburger handles mobile */
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.sidebar-toggle:hover {
+  background: var(--bg2);
+  border-color: var(--accent);
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.top-bar .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.content-area {
+  padding: 24px 32px;
+  max-width: 1400px;
+}
+
+/* ───────────────────────────────────────────────────
+   UTILITY — ensure all btn rows wrap on mobile
+   ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  div[style*="display:flex"][style*="gap:12px"],
+  div[style*="display:flex"][style*="gap:8px"] {
+    flex-wrap: wrap;
+  }
+
+  /* Action button rows in card headers */
+  .card-header div[style*="display:flex"],
+  .card-header > div {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Mark Attendance — all-present/absent buttons */
+  .card-header > div .btn-secondary.btn-sm {
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Report card exam header */
+  .card-header > div[style*="text-align:right"] {
+    text-align: left !important;
+    width: 100%;
+  }
+
+  /* Download report card flex wrap */
+  .report-download-card {
+    gap: 14px;
+  }
+}

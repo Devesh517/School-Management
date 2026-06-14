@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduManage — Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./CSS/style.css"/>
+  <link rel="stylesheet" href="./CSS/student.css"/>
+  <link rel="stylesheet" href="./CSS/js-inline-overrides.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <!-- LOGIN PAGE -->
+    <div id="page-login" class="page active">
+      <div class="login-bg">
+        <div class="login-grid-overlay"></div>
+        <div class="login-card">
+          <div class="login-brand">
+            <div class="brand-icon">🎓</div>
+            <h1>EduManage</h1>
+            <p>Student Portal</p>
+          </div>
+          <form id="login-form" class="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Student Username</label>
+              <input type="text" id="login-username" placeholder="Enter your username" required/>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="Enter your password" required/>
+            </div>
+            <div id="login-error" class="error-msg hidden"></div>
+            <button type="submit" class="btn-primary full-width">
+              <span class="btn-text">Sign In</span>
+              <span class="btn-loader hidden">⟳</span>
+            </button>
+          </form>
+          <p class="login-hint">Contact your class teacher or admin if you forgot your credentials.</p>
+          <p class="login-hint" style="margin-top:8px">
+            <a href="./index.html" style="color:var(--accent);text-decoration:none;">← Staff Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDENT APP -->
+    <div id="page-app" class="page hidden">
+
+      <!-- SIDEBAR -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-icon">🎓</div>
+          <span>EduManage</span>
+        </div>
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-label">My Portal</span>
+            <a href="#" class="nav-item active" data-page="dashboard">
+              <span class="nav-icon">📊</span><span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="my-marks">
+              <span class="nav-icon">📝</span><span>My Marks</span>
+            </a>
+            <a href="#" class="nav-item" data-page="exams">
+              <span class="nav-icon">📅</span><span>Exam Timetable</span>
+            </a>
+            <a href="#" class="nav-item" data-page="timetable">
+              <span class="nav-icon">📅</span><span>Timetable</span>
+            </a>
+            <a href="#" class="nav-item" data-page="attendance">
+              <span class="nav-icon">✅</span><span>My Attendance</span>
+            </a>
+            <a href="#" class="nav-item" data-page="notices">
+              <span class="nav-icon">📢</span><span>Notices</span>
+            </a>
+            <a href="#" class="nav-item" data-page="report-card">
+              <span class="nav-icon">📄</span><span>Report Card</span>
+            </a>
+          </div>
+        </nav>
+        <div class="sidebar-footer">
+          <button class="btn-logout" onclick="logout()">
+            <span>🚪</span> Logout
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main-content">
+        <header class="top-bar">
+          <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+          <div class="top-bar-right">
+            <div class="user-info">
+              <div class="user-avatar" id="user-avatar">S</div>
+              <div>
+                <div class="user-name" id="user-name">Student</div>
+                <div class="user-role" id="user-role">Student</div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div id="content-area" class="content-area"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Modal (used by utils.js) -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <script src="./JS/api.js"></script>
+  <script src="./JS/utils.js"></script>
+  <script src="./JS/student_app.js"></script>
+  <script src="./JS/student_marks.js"></script>
+  <script src="./JS/student_exams.js"></script>
+  <script src="./JS/student_notices.js"></script>
+  <script src="./JS/mobile-sidebar.js"></script>
+</body>
+</html>
