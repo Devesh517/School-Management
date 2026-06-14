@@ -102,33 +102,7 @@ School Management Project/
 │   ├── mobile-sidebar.js
 │   └── utils.js
 │
-├── excel_exports/
-│   │
-│   ├── Class_Management/
-│   │   ├── class_master.xlsx
-│   │   └── Class_9/
-│   │       ├── section_A.xlsx
-│   │       └── subjects.xlsx
-│   │
-│   ├── Teacher_Management/
-│   │   ├── teacher_details.xlsx
-│   │   ├── teacher_assignments.xlsx
-│   │   ├── teacher_salary.xlsx
-│   │   └── removed_teachers.xlsx
-│   │
-│   ├── Marks/
-│   │   └── Class_9/
-│   │       └── section_A.xlsx
-│   │
-│   ├── Report_Cards/
-│   │   └── Class_9/
-│   │       └── Section_A/
-│   │           └── ReportCard_9A_1.pdf
-│   │
-│   └── Exam_Timetables/
-│       ├── Unit 1_9_A.pdf
-│       └── Half Yearly_9_A.pdf
-│
+├
 └── README.md
 ```
 
@@ -240,7 +214,7 @@ School Management Project/
 ## 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Devesh517/School-Management.git
 cd School-Management-System
 ```
 
@@ -300,8 +274,6 @@ http://localhost:5000
 * Student Performance Analytics
 * Mobile Application
 * Multi-School Support
-
----
 
 ---
 
